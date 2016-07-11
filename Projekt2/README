@@ -1,0 +1,68 @@
+_Projekt:_  Masivne stahovanie blogov
+
+_Autor:_  Adam Ormandy (xorman00)
+
+
+
+
+OBSAH PRIECINKU:
+----------------
+
+
+**makefile**
+- make clean vycisti zmeny, ktore sposoby test.sh
+
+
+**test.sh**
+ -pozadovana skupina testov
+
+
+**./server/server**
+- spustitelny subor serveru
+
+
+**./client/client**
+- spustitelny subor clienta
+
+
+**ipk_doc.pdf**
+- dokumentacia
+
+
+
+CLIENT:
+-------
+
+PARAMETRE:
+-h [host]    adresa servera (povinny parameter)
+-p [port]    port na ktorom budu server a klient komunikovat (povinny parameter)
+-d [subor]   download suboru zo servera
+-u [subor]   upload suboru na server
+
+
+POPIS:
+Klient program sluzi na upload/download suborov zo servera.
+Ak je zadany host ktory neexistuje alebo nezmyselny port, program sa ukonci.
+Ak su zadane naraz parametre -d a -u, program sa ukonci.
+Parametre -d a -u beru len jeden subor, ak ich bude zadanych viac, program sa ukonci.
+
+V pripade chyb je uzivatel upozorneny chybovimi hlaseniami vypisanimy na stderr.
+
+
+
+
+SERVER:
+-------
+
+_PARAMETRE:_
+ - p [port]    port na ktorom bude server pocuvat
+
+_POPIS:_
+
+Komunikuje a obstarava poziadavky od klienta.
+Ak je zadany nezmyselny port, program sa ukonci.
+V pripade chyb je uzivatel upozorneny chybovimi hlaseniami vypisanimy na stderr.
+Tieto chyby nemusia byt na strane servera,
+moze to byt aj poziadavka na download suboru ktory neexistuje.
+Server po sebe nechava <defunct> procesi, lebo hlavny proces neprebera exit kody svojich deti.
+<defunct> procesi nezaberaju ziadne zdroje a zmiznu po vypnuti serveru, takze niesu ziadny problem.
